@@ -16,7 +16,7 @@ Repository ini berisi tentang tutorial instalasi dan konfigurasi ELK Stack with 
 
 # Environment
 
-![App Screenshot](/image/envi.jpg)
+![App Screenshot](./image/envi.jpg)
 
 # Docker Installation
 
@@ -81,7 +81,7 @@ git clone https://github.com/nvlannasik/DOCKER-ELK-DOCUMENTATION.git
 masuk ke direktori Docker-ELK
 
 ```bash
-cd DOCKER-ELK-DOCUMENTATION/docker-elk
+cd DOCKER-ELK-DOCUMENTATION
 ```
 
 Jalankan command berikut untuk mendeploy Docker-ELK
@@ -89,6 +89,46 @@ Jalankan command berikut untuk mendeploy Docker-ELK
 ```bash
 docker compose up -d
 ```
+
+# Access ELK Stack + RabbitMQ
+
+untuk mengakses dashboard kibana
+
+```bash
+http://localhost:5601
+```
+
+untuk mengakses dashboard RabbitMQ
+
+```bash
+http://localhost:15672
+```
+
+untuk mengakses elasticsearch
+
+```bash
+http://localhost:9200
+```
+
+# Default Password
+
+## Dashboard Kibana
+
+**user** : elastic
+
+**password** : changeme
+
+## Dashboard RabbitMQ
+
+**user** : guest
+
+**password** : guest
+
+## Elasticsearch
+
+**user** : elastic
+
+**password** : changeme
 
 # Konfigurasi Pipeline Logstash
 
