@@ -1,6 +1,6 @@
 ﻿# ELK Stack with Docker Documentation
 
-Repository ini berisi tentang tutorial instalasi dan konfigurasi ELK Stack
+Repository ini berisi tentang tutorial instalasi dan konfigurasi ELK Stack with rabbitmq container version
 
 # Spesification
 
@@ -15,89 +15,103 @@ Repository ini berisi tentang tutorial instalasi dan konfigurasi ELK Stack
 **Docker version** : 20.10.17, build 100c701
 
 # Environment
+
 ![App Screenshot](/image/envi.jpg)
 
-
-
 # Docker Installation
+
 Sebelum menginstall docker, kita akan melakukan setup Docker repository terlebih dahulu.
 
-
 Lakukan update apt package index
+
 ```bash
 sudo apt-get update
 ```
+
 install package untuk allow apt to use a repository over HTTPS
+
 ```bash
  sudo apt-get install ca-certificates gnupg lsb-release
 ```
+
 buat folder untuk Docker Official GPG Key
+
 ```bash
 sudo mkdir -p /etc/apt/keyrings
 ```
+
 tambahkan Docker Official GPG Key
+
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 ```
+
 setup repository Docker ubuntu
+
 ```bash
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
+
 lakukan update
+
 ```bash
 sudo apt-get update
 ```
+
 install Docker Engine
+
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
+
 Test Docker Engine dengan mencoba menjalankan command berikut
+
 ```bash
 sudo docker run hello-world
 ```
 
-# Install RabbitMQ Server di Docker
-Selanjutnya kita menginstall RabbitMQ Server di Docker. Jalankan command berikut untuk menginstall RabbitMQ Server
-```bash
-docker run -itd --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
-```
-
-akses RabbitMQ Server di browser
-```bash
-http://localhost:15672
-```
-
 # Clone Repository Docker-ELK
+
 Clone repository Docker-ELK
+
 ```bash
-git clone https://github.com/nvlannasik/docker-elk.git
+git clone https://github.com/nvlannasik/DOCKER-ELK-DOCUMENTATION.git
 ```
+
 masuk ke direktori Docker-ELK
+
 ```bash
-cd docker-elk
+cd DOCKER-ELK-DOCUMENTATION/docker-elk
 ```
+
 Jalankan command berikut untuk mendeploy Docker-ELK
+
 ```bash
 docker compose up -d
 ```
 
 # Konfigurasi Pipeline Logstash
+
 Didalam direktori Docker-ELK, kita akan melakukan konfigurasi pipeline Logstash.
 masuk ke direktori Logstash
+
 ```bash
 cd logstash/pipeline
 ```
+
 lalu buat file logstash.conf
+
 ```bash
 nano logstash.conf
 ```
 
 Default logstash.conf pada repo yang sudah di download seperti di bawah ini:
+
 ```bash
 input {
         rabbitmq {
                 id => "rabbitmq_logs"
-                host => "annasik.site"
+                host => "rabbitmq"
                 port => 5672
                 vhost => "/"
                 queue => "hello"
@@ -130,4 +144,5 @@ output {
 Silahkan di sesuaikan dengan konfigurasi yang di butuhkan dan sesuai dengan konfigurasi yang ada di server.
 
 ## Authors
+
 - [Ahmad Naoval Annasik](https://www.github.com/octokatherine)
