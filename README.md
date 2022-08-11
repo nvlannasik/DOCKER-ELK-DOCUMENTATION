@@ -75,7 +75,7 @@ sudo docker run hello-world
 Clone repository Docker-ELK
 
 ```bash
-git clone https://github.com/nvlannasik/DOCKER-ELK-DOCUMENTATION.git
+git clone https://github.com/nvlannasik/ELK-DOCKER-DOCUMENTATION.git
 ```
 
 masuk ke direktori Docker-ELK
